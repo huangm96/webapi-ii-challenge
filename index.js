@@ -1,5 +1,10 @@
 const express = require("express");
 
+require('dotenv').config();
+
+const secrets = require("./config/secrets.js");
+const defaults = require("./config/default.js");
+
 const postRouter = require('./post-router.js');
 
 const server = express();
@@ -14,7 +19,9 @@ server.get("/", (req, res) => {
 
 server.use("/api/posts", postRouter);
 
-server.listen(8787, () => {
-  console.log("\n*** Server Running on http://localhost:8787 ***\n");
+server.listen(defaults.port, () => {
+  console.log(
+    `\n*** Server Running on http://localhost:${defaults.port} ***\n`
+  );
 });
 
